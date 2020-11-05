@@ -1,0 +1,7 @@
+{
+  "name": "Ionic navigation",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

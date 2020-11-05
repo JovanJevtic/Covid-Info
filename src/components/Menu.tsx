@@ -29,22 +29,22 @@ const appPages: AppPage[] = [
   },
   {
     title: 'Bosna i Hercegovina',
-    url: '/page/Bosna i Hercegovina',
+    url: '/page/BIH',
     imgSrc: '',
   },
   {
     title: 'Srbija',
-    url: '/page/Srbija',
+    url: '/page/SRB',
     imgSrc: '',
   },
   {
     title: 'Hrvatska',
-    url: '/page/Hrvatska',
+    url: '/page/HRV',
     imgSrc: '',
   },
   {
     title: 'Crna Gora',
-    url: '/page/Crna Gora',
+    url: '/page/MNE',
     imgSrc: '',
   },
 ];

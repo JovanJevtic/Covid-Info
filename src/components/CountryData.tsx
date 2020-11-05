@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getWorldData } from '../api/index';
+import { getCountryData } from '../api/index';
 import {
     IonLabel,
 } from '@ionic/react';
+
+
+interface Props {
+    country: string;
+}
 
 interface Data {
     active?: number;
@@ -16,9 +21,9 @@ interface Data {
     affectedCountries?: number;
 }
 
-const GlobalData: React.FC = () => {
-
-    const [ data, setData] = useState<Data>({});
+const CountryData: React.FC<Props> = ({ country }) => {
+    
+    const [ data, setData ] = useState<Data>({});
 
     //* Daily Data
     const [ activeCasesNumber, setActiveCases ] = useState<number>();
@@ -33,14 +38,14 @@ const GlobalData: React.FC = () => {
     const [ deathsNumber, setDeaths ] = useState<number>();
     const [ affectedCountriesNumber, setAffectedCountries ] = useState<number>();
 
-    const getGloabalData = async () => {
-        const response = await getWorldData();
+    const getData = async () => {
+        const response = await getCountryData(country);
         setData(response);
     }
-    
+
     useEffect(() => {
-        getGloabalData();
-    }, [])
+        getData();
+    }, [country])
 
     useEffect(() => {
         if (Object.keys(data).length != 0) {
@@ -69,14 +74,9 @@ const GlobalData: React.FC = () => {
         }
     }, [data]);
 
-    useEffect(() => {
-        console.log(casesNumber);
-    }, [casesNumber])
-
     return(
-        <>  
+        <>
             <IonLabel>Active cases: {activeCasesNumber} </IonLabel>
-            <IonLabel>Affected countries: {affectedCountriesNumber} </IonLabel>
             <IonLabel>Cases: {casesNumber} </IonLabel>
             <IonLabel>Deaths: {deathsNumber} </IonLabel>
             <IonLabel>Recovered: {recoveredNumber} </IonLabel>
@@ -88,4 +88,4 @@ const GlobalData: React.FC = () => {
     );
 }
 
-export default GlobalData;
+export default CountryData;

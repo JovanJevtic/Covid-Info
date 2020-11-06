@@ -69,10 +69,6 @@ const GlobalData: React.FC = () => {
         }
     }, [data]);
 
-    useEffect(() => {
-        console.log(casesNumber);
-    }, [casesNumber])
-
     return(
         <>  
             <IonLabel>Active cases: {activeCasesNumber} </IonLabel>

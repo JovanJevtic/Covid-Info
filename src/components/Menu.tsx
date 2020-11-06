@@ -67,7 +67,6 @@ const Menu: React.FC = () => {
 
       const response = await getCountryFlag(page.iso)
       page.imgSrc = response.countryInfo.flag;
-      console.log(page.imgSrc);
     })
   }
 
@@ -84,8 +83,9 @@ const Menu: React.FC = () => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonImg style={{maxWidth: 30, maxHeight: 40}} slot="start" src={appPage.imgSrc} />
-                  <IonLabel>{appPage.title}</IonLabel>
+                  { appPage.title != 'Globalno' && <IonImg style={{maxWidth: 30, maxHeight: 40}} slot="start" src={appPage.imgSrc} /> }
+                  { appPage.title === 'Globalno' && <IonIcon icon={globe} style={{maxWidth: 30, maxHeight: 40, fontSize: 30, color: 'white'}} slot="start" /> }
+                  <IonLabel style={{fontWeight: 'bold'}}>{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
             );

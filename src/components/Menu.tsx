@@ -11,46 +11,69 @@ import {
   IonImg
 } from '@ionic/react';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Menu.css';
-
+import { globe, globeOutline } from 'ionicons/icons';
+import { getCountryFlag } from '../api/index';
+ 
 interface AppPage {
   url: string;
   imgSrc: string
   title: string;
+  iso: string;
 }
 
 const appPages: AppPage[] = [
   {
     title: 'Globalno',
     url: '/page/Globalno',
-    imgSrc: '',
+    imgSrc: globe,
+    iso: 'Worldwide',
   },
   {
     title: 'Bosna i Hercegovina',
     url: '/page/BIH',
-    imgSrc: '',
+    imgSrc: 'https://disease.sh/assets/img/flags/ba.png',
+    iso: 'BIH',                                               
   },
   {
     title: 'Srbija',
     url: '/page/SRB',
-    imgSrc: '',
+    imgSrc: 'https://disease.sh/assets/img/flags/rs.png',
+    iso: 'SRB',
   },
   {
     title: 'Hrvatska',
     url: '/page/HRV',
-    imgSrc: '',
+    imgSrc: 'https://disease.sh/assets/img/flags/hr.png',
+    iso: 'HRV',
   },
   {
     title: 'Crna Gora',
     url: '/page/MNE',
-    imgSrc: '',
+    imgSrc: 'https://disease.sh/assets/img/flags/me.png',
+    iso: 'MNE',
   },
 ];
 
 const Menu: React.FC = () => {
   const location = useLocation();
+
+  const getFlags = async () => {
+    appPages.forEach(async page => {
+
+      if (page.iso === 'Worldwide' || page.iso === 'Globalno') return;
+
+      const response = await getCountryFlag(page.iso)
+      page.imgSrc = response.countryInfo.flag;
+      console.log(page.imgSrc);
+    })
+  }
+
+  useEffect(() => {
+    getFlags();
+  }, [])
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -61,7 +84,7 @@ const Menu: React.FC = () => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonImg slot="start" src={appPage.imgSrc} />
+                  <IonImg style={{maxWidth: 30, maxHeight: 40}} slot="start" src={appPage.imgSrc} />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>

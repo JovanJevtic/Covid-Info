@@ -39,6 +39,9 @@ const CountryData: React.FC<Props> = ({ country }) => {
     const [ affectedCountriesNumber, setAffectedCountries ] = useState<number>();
 
     const getData = async () => {
+
+        if (country === 'Globalno') return;
+
         const response = await getCountryData(country);
         setData(response);
     }

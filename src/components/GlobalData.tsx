@@ -4,6 +4,10 @@ import {
     IonLabel,
 } from '@ionic/react';
 
+import InfoCard from './InfoCard';
+
+import './InfoCard.css';
+
 interface Data {
     active?: number;
     todayCases?: number;
@@ -70,16 +74,23 @@ const GlobalData: React.FC = () => {
     }, [data]);
 
     return(
-        <>  
-            <IonLabel>Active cases: {activeCasesNumber} </IonLabel>
-            <IonLabel>Affected countries: {affectedCountriesNumber} </IonLabel>
-            <IonLabel>Cases: {casesNumber} </IonLabel>
-            <IonLabel>Deaths: {deathsNumber} </IonLabel>
-            <IonLabel>Recovered: {recoveredNumber} </IonLabel>
-            <IonLabel>Tests: {testsNumber} </IonLabel>
-            <IonLabel>Today cases: {todayCasesNumber} </IonLabel>
-            <IonLabel>Today deaths: {todayDeathsNumber} </IonLabel>
-            <IonLabel>Today recovered: {todayRecoveredNumber} </IonLabel>
+        <> 
+            <div className="infoCard-row">
+                <InfoCard title='Aktivnih slucajeva:' value={activeCasesNumber} color={'blue'} /> 
+                <InfoCard title='Ukupnih slucajeva:' value={casesNumber} color={'blue'} />
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Ukupno smrti:' value={deathsNumber} color={'red'} /> 
+                <InfoCard title='Smrti danas:' value={todayDeathsNumber} color={'red'} />
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Oporavljenih danas:' value={todayRecoveredNumber} color={'green'} /> 
+                <InfoCard title='Ukupno oporavljenih:' value={recoveredNumber} color={'green'} />
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Testiranih:' value={testsNumber} color={'blue'} /> 
+                <InfoCard title='Slucajeva danas:' value={todayCasesNumber} color={'blue'} />
+            </div>
         </>
     );
 }

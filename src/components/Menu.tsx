@@ -32,12 +32,6 @@ const appPages: AppPage[] = [
     iso: 'Worldwide',
   },
   {
-    title: 'Bosna i Hercegovina',
-    url: '/page/BIH',
-    imgSrc: 'https://disease.sh/assets/img/flags/ba.png',
-    iso: 'BIH',                                               
-  },
-  {
     title: 'Srbija',
     url: '/page/SRB',
     imgSrc: 'https://disease.sh/assets/img/flags/rs.png',
@@ -48,6 +42,12 @@ const appPages: AppPage[] = [
     url: '/page/HRV',
     imgSrc: 'https://disease.sh/assets/img/flags/hr.png',
     iso: 'HRV',
+  },
+  {
+    title: 'Bosna i Hercegovina',
+    url: '/page/BIH',
+    imgSrc: 'https://disease.sh/assets/img/flags/ba.png',
+    iso: 'BIH',                                               
   },
   {
     title: 'Crna Gora',
@@ -83,8 +83,8 @@ const Menu: React.FC = () => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  { appPage.title != 'Globalno' && <IonImg style={{maxWidth: 30, maxHeight: 40}} slot="start" src={appPage.imgSrc} /> }
-                  { appPage.title === 'Globalno' && <IonIcon icon={globe} style={{maxWidth: 30, maxHeight: 40, fontSize: 30, color: 'white'}} slot="start" /> }
+                  { appPage.title != 'Globalno' && <IonImg style={{maxWidth: 30, maxHeight: 30}} slot="start" src={appPage.imgSrc} /> }
+                  { appPage.title === 'Globalno' && <IonIcon icon={globe} style={{maxWidth: 28, maxHeight: 30, fontSize: 30, color: 'white'}} slot="start" /> }
                   <IonLabel style={{fontWeight: 'bold'}}>{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>

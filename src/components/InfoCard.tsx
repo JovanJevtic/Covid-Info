@@ -25,16 +25,20 @@ const InfoCard: React.FC<Props> = ({ title, value, color }) => {
         if (color === 'red') {
             setCardColor('#ed576b')
         } else if (color === 'blue') {
-            setCardColor('#5260ff')
+            setCardColor('#50c8ff')
         } else if (color === 'green') {
             setCardColor('#2dd36f')
         }
     }, [])
 
     return(
-        <IonCard style={{borderBottom: `5px solid ${cardColor}`}} className="card-wrapp" color={'light tint'}  >
-            <IonCardTitle className="card-title"> {title} </IonCardTitle>
-            <IonCardContent className="card-content"> {formatedValue} </IonCardContent>
+        <IonCard style={{borderBottom: `5px solid ${cardColor}`}} className="card-wrapp" color={'light tint'} >
+            <IonItem color={'light tint'}>
+                <IonCardTitle style={{fontWeight: 'bold'}} className="card-title"> {title} </IonCardTitle>
+            </IonItem>
+            <IonItem color={'light tint'}>
+                <IonCardContent style={{color: cardColor}} className="card-content"> {formatedValue} </IonCardContent>
+            </IonItem>
         </IonCard>
     );
 }

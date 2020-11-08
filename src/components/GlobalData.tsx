@@ -77,18 +77,26 @@ const GlobalData: React.FC = () => {
         <> 
             <div className="infoCard-row">
                 <InfoCard title='Aktivnih slucajeva:' value={activeCasesNumber} color={'blue'} /> 
+            </div>
+            <div className="infoCard-row">
                 <InfoCard title='Ukupnih slucajeva:' value={casesNumber} color={'blue'} />
             </div>
             <div className="infoCard-row">
                 <InfoCard title='Ukupno smrti:' value={deathsNumber} color={'red'} /> 
+            </div>
+            <div className="infoCard-row">
                 <InfoCard title='Smrti danas:' value={todayDeathsNumber} color={'red'} />
             </div>
             <div className="infoCard-row">
                 <InfoCard title='Oporavljenih danas:' value={todayRecoveredNumber} color={'green'} /> 
-                <InfoCard title='Ukupno oporavljenih:' value={recoveredNumber} color={'green'} />
             </div>
             <div className="infoCard-row">
                 <InfoCard title='Testiranih:' value={testsNumber} color={'blue'} /> 
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Ukupno oporavljenih:' value={recoveredNumber} color={'green'} />
+            </div>
+            <div className="infoCard-row">
                 <InfoCard title='Slucajeva danas:' value={todayCasesNumber} color={'blue'} />
             </div>
         </>

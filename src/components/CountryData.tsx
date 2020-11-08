@@ -4,6 +4,9 @@ import {
     IonLabel,
 } from '@ionic/react';
 
+import InfoCard from './InfoCard';
+
+import './InfoCard.css';
 
 interface Props {
     country: string;
@@ -79,14 +82,30 @@ const CountryData: React.FC<Props> = ({ country }) => {
 
     return(
         <>
-            <IonLabel>Active cases: {activeCasesNumber} </IonLabel>
-            <IonLabel>Cases: {casesNumber} </IonLabel>
-            <IonLabel>Deaths: {deathsNumber} </IonLabel>
-            <IonLabel>Recovered: {recoveredNumber} </IonLabel>
-            <IonLabel>Tests: {testsNumber} </IonLabel>
-            <IonLabel>Today cases: {todayCasesNumber} </IonLabel>
-            <IonLabel>Today deaths: {todayDeathsNumber} </IonLabel>
-            <IonLabel>Today recovered: {todayRecoveredNumber} </IonLabel>
+            <div className="infoCard-row">
+                <InfoCard title='Aktivnih slucajeva:' value={activeCasesNumber} color={'blue'} /> 
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Ukupnih slucajeva:' value={casesNumber} color={'blue'} />
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Ukupno smrti:' value={deathsNumber} color={'red'} /> 
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Smrti danas:' value={todayDeathsNumber} color={'red'} />
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Oporavljenih danas:' value={todayRecoveredNumber} color={'green'} /> 
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Testiranih:' value={testsNumber} color={'blue'} /> 
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Ukupno oporavljenih:' value={recoveredNumber} color={'green'} />
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Slucajeva danas:' value={todayCasesNumber} color={'blue'} />
+            </div>
         </>
     );
 }

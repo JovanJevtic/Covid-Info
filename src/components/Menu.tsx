@@ -8,7 +8,9 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
-  IonImg
+  IonImg,
+  IonTitle,
+  IonText
 } from '@ionic/react';
 
 import React, { useEffect } from 'react';
@@ -83,7 +85,8 @@ const Menu: React.FC = () => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  { appPage.title != 'Globalno' && <IonImg style={{maxWidth: 30, maxHeight: 30}} slot="start" src={appPage.imgSrc} /> }
+                  {appPage.title != 'Globalno' && <IonImg style={{maxWidth: 30, maxHeight: 30}} slot="start" src={appPage.imgSrc} />} 
+                  {/* appPage.title != 'Globalno' && <IonText style={{width: 50, color: 'white'}} slot="start"> {appPage.iso} </IonText> */}
                   { appPage.title === 'Globalno' && <IonIcon icon={globe} style={{maxWidth: 28, maxHeight: 30, fontSize: 30, color: 'white'}} slot="start" /> }
                   <IonLabel style={{fontWeight: 'bold'}}>{appPage.title}</IonLabel>
                 </IonItem>
@@ -91,6 +94,10 @@ const Menu: React.FC = () => {
             );
           })}
         </IonList>
+        <div className="menu-footer">
+          <a target="_blank" rel="noopener" href="https://jevtic.netlify.app/">Created by: Jovan Jevtic;</a>
+          <p className="footer-copyright">Copyright© 2020, all rights reserved;</p>
+        </div>
       </IonContent>
     </IonMenu>
   );

@@ -33,11 +33,11 @@ const InfoCard: React.FC<Props> = ({ title, value, color }) => {
 
     return(
         <IonCard style={{borderBottom: `5px solid ${cardColor}`}} className="card-wrapp" color={'light tint'} >
-            <IonItem color={'light tint'}>
+            <IonItem style={{display: 'flex', justifyContent: 'center', aligItems: 'center'}} color={'light tint'}>
                 <IonCardTitle style={{fontWeight: 'bold'}} className="card-title"> {title} </IonCardTitle>
             </IonItem>
             <IonItem color={'light tint'}>
-                <IonCardContent style={{color: cardColor}} className="card-content"> {formatedValue} </IonCardContent>
+                <IonCardContent style={{color: cardColor, textAlign: 'center'}} className="card-content"> {formatedValue} </IonCardContent>
             </IonItem>
         </IonCard>
     );

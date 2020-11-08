@@ -22,5 +22,20 @@
 
 .card-content {
     text-align: center;
+    font-weight: bold;
+    font-size: 16px;
 }
 
+.label-row-wrapp {
+    width: 89%;
+    margin: 0 auto;
+    height: 40px;
+    display: flex;
+    align-items: center;    
+    justify-content: flex-start;
+}
+
+.date-label {
+    font-size: 20px;
+    font-weight: bold;
+}

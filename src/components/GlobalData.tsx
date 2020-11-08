@@ -78,26 +78,32 @@ const GlobalData: React.FC = () => {
             <div className="infoCard-row">
                 <InfoCard title='Aktivnih slucajeva:' value={activeCasesNumber} color={'blue'} /> 
             </div>
-            <div className="infoCard-row">
-                <InfoCard title='Ukupnih slucajeva:' value={casesNumber} color={'blue'} />
+            <div className="label-row-wrapp">
+                <div className="date-label">Danas</div>
             </div>
             <div className="infoCard-row">
-                <InfoCard title='Ukupno smrti:' value={deathsNumber} color={'red'} /> 
-            </div>
-            <div className="infoCard-row">
-                <InfoCard title='Smrti danas:' value={todayDeathsNumber} color={'red'} />
+                <InfoCard title='Slucajeva danas:' value={todayCasesNumber} color={'blue'} />
             </div>
             <div className="infoCard-row">
                 <InfoCard title='Oporavljenih danas:' value={todayRecoveredNumber} color={'green'} /> 
             </div>
             <div className="infoCard-row">
-                <InfoCard title='Testiranih:' value={testsNumber} color={'blue'} /> 
+                <InfoCard title='Smrti danas:' value={todayDeathsNumber} color={'red'} />
+            </div>
+            <div className="label-row-wrapp">
+                <div className="date-label">Ukupno</div>
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Ukupnih slucajeva:' value={casesNumber} color={'blue'} />
             </div>
             <div className="infoCard-row">
                 <InfoCard title='Ukupno oporavljenih:' value={recoveredNumber} color={'green'} />
             </div>
             <div className="infoCard-row">
-                <InfoCard title='Slucajeva danas:' value={todayCasesNumber} color={'blue'} />
+                <InfoCard title='Ukupno smrti:' value={deathsNumber} color={'red'} /> 
+            </div>
+            <div className="infoCard-row">
+                <InfoCard title='Testiranih:' value={testsNumber} color={'blue'} /> 
             </div>
         </>
     );

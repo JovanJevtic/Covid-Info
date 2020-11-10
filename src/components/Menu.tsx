@@ -13,17 +13,22 @@ import {
   IonText
 } from '@ionic/react';
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Menu.css';
 import { globe, globeOutline } from 'ionicons/icons';
-import { getCountryFlag } from '../api/index';
+import { getCountryFlag, getCountriesList } from '../api/index';
  
 interface AppPage {
   url: string;
   imgSrc: string
   title: string;
   iso: string;
+}
+
+interface CountryPage {
+  country: string;
+  url: string;
 }
 
 const appPages: AppPage[] = [
@@ -62,6 +67,8 @@ const appPages: AppPage[] = [
 const Menu: React.FC = () => {
   const location = useLocation();
 
+  const [ countriesList, setCountriesList ] = useState<CountryPage[]>([]);
+
   const getFlags = async () => {
     appPages.forEach(async page => {
 
@@ -72,9 +79,19 @@ const Menu: React.FC = () => {
     })
   }
 
+  const getAllCountries = async () => {
+    const response = await getCountriesList();
+    setCountriesList(response)
+  }
+
   useEffect(() => {
     getFlags();
+    getAllCountries();
   }, [])
+
+  useEffect(() => {
+    console.log(countriesList);
+  }, [countriesList])
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -93,6 +110,20 @@ const Menu: React.FC = () => {
               </IonMenuToggle>
             );
           })}
+        </IonList>
+        <IonList id="allCountries-list">
+          {
+            countriesList.map((countrie, index) => {
+              return (
+                <IonMenuToggle key={index} autoHide={false}>
+                  <IonItem className={location.pathname === `/page/${countrie.country}` ? 'selected' : ''} routerLink={`/page/${countrie.country}`} routerDirection="none" lines="none" detail={false}>
+                   
+                    <IonLabel style={{fontWeight: 'bold'}}>{countrie.country}</IonLabel>
+                  </IonItem>
+                </IonMenuToggle>
+              );
+            })
+          }
         </IonList>
         <div className="menu-footer">
           <a target="_blank" rel="noopener" href="https://jevtic.netlify.app/">Created by: Jovan Jevtic;</a>

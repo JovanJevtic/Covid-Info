@@ -26,3 +26,12 @@ export const getCountryFlag = async (country: string) => {
 
     return data;
 }
+
+export const getCountriesList = async () => {
+    let url = `https://disease.sh/v3/covid-19/countries/`;
+
+    const response = await axios.get(url);
+    const data = await response.data;
+
+    return data;
+}

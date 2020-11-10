@@ -23,6 +23,8 @@ const Page: React.FC = () => {
       setTitle('Hrvatska');
     } else if (name === 'MNE') {
       setTitle('Crna Gora')
+    } else {
+      setTitle(name)
     }
   }, [name])
 

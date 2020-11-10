@@ -29,6 +29,11 @@ interface AppPage {
 interface CountryPage {
   country: string;
   url: string;
+  countryInfo: countryInfo;
+}
+
+type countryInfo = {
+  flag: string;
 }
 
 const appPages: AppPage[] = [
@@ -117,7 +122,7 @@ const Menu: React.FC = () => {
               return (
                 <IonMenuToggle key={index} autoHide={false}>
                   <IonItem className={location.pathname === `/page/${countrie.country}` ? 'selected' : ''} routerLink={`/page/${countrie.country}`} routerDirection="none" lines="none" detail={false}>
-                   
+                    <IonImg style={{maxWidth: 30, maxHeight: 30}} slot="start" src={countrie.countryInfo.flag} />
                     <IonLabel style={{fontWeight: 'bold'}}>{countrie.country}</IonLabel>
                   </IonItem>
                 </IonMenuToggle>

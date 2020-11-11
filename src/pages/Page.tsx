@@ -59,6 +59,10 @@ const Page: React.FC = () => {
         <IonContent>
           { isHome && <GlobalData /> }
           { isCountry && <CountryData country={name} /> }
+          <div className="menu-footer">
+            <a target="_blank" rel="noopener" href="https://jevtic.netlify.app/">Created by: Jovan Jevtic;</a>
+            <p className="footer-copyright">Copyright© 2020, all rights reserved;</p>
+          </div>
         </IonContent>
       </IonContent>
     </IonPage>

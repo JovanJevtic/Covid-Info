@@ -10,7 +10,8 @@ import {
   IonNote,
   IonImg,
   IonTitle,
-  IonText
+  IonText,
+  IonSearchbar,
 } from '@ionic/react';
 
 import React, { useState, useEffect } from 'react';
@@ -18,6 +19,7 @@ import { useLocation } from 'react-router-dom';
 import './Menu.css';
 import { globe, globeOutline } from 'ionicons/icons';
 import { getCountryFlag, getCountriesList } from '../api/index';
+import { count } from 'console';
  
 interface AppPage {
   url: string;
@@ -30,6 +32,7 @@ interface CountryPage {
   country: string;
   url: string;
   countryInfo: countryInfo;
+  shouldHide?: boolean;
 }
 
 type countryInfo = {
@@ -74,6 +77,7 @@ const Menu: React.FC = () => {
 
   const [ countriesList, setCountriesList ] = useState<CountryPage[]>([]);
   const [ sortedCountriesList, setSortedCountriesList ] = useState<CountryPage[]>([]);
+  const [ searchText, setSearchText ] = useState<string>('');
 
   const getFlags = async () => {
     appPages.forEach(async page => {
@@ -100,6 +104,17 @@ const Menu: React.FC = () => {
     }
 
     return 0;
+  }
+
+  const handleSearchInput = (e: any) => {
+    const query = e.currentTarget.value.toLowerCase();
+    console.log(query);
+    requestAnimationFrame(() => {
+      sortedCountriesList.forEach(item => {
+        const shouldShow = item.country.toLowerCase().indexOf(query) > -1;
+        item.shouldHide = !shouldShow;
+      });
+    });
   }
 
   useEffect(() => {
@@ -129,12 +144,13 @@ const Menu: React.FC = () => {
             );
           })}
         </IonList>
+        <IonSearchbar onIonInput={handleSearchInput} value={searchText} onIonChange={e => setSearchText(e.detail.value!)} debounce={1000}></IonSearchbar>
         <IonList id="allCountries-list">
           {
             sortedCountriesList.map((countrie, index) => {
               return (
                 <IonMenuToggle key={index} autoHide={false}>
-                  <IonItem className={location.pathname === `/page/${countrie.country}` ? 'selected' : ''} routerLink={`/page/${countrie.country}`} routerDirection="none" lines="none" detail={false}>
+                  <IonItem style={{display: countrie.shouldHide ? 'none' : 'block'}} className={location.pathname === `/page/${countrie.country}` ? 'selected' : ''} routerLink={`/page/${countrie.country}`} routerDirection="none" lines="none" detail={false}>
                     <IonImg style={{maxWidth: 30, maxHeight: 30}} slot="start" src={countrie.countryInfo.flag} />
                     <IonLabel style={{fontWeight: 'bold'}}>{countrie.country}</IonLabel>
                   </IonItem>
@@ -143,10 +159,6 @@ const Menu: React.FC = () => {
             })
           }
         </IonList>
-        <div className="menu-footer">
-          <a target="_blank" rel="noopener" href="https://jevtic.netlify.app/">Created by: Jovan Jevtic;</a>
-          <p className="footer-copyright">Copyright© 2020, all rights reserved;</p>
-        </div>
       </IonContent>
     </IonMenu>
   );

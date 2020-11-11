@@ -73,6 +73,7 @@ const Menu: React.FC = () => {
   const location = useLocation();
 
   const [ countriesList, setCountriesList ] = useState<CountryPage[]>([]);
+  const [ sortedCountriesList, setSortedCountriesList ] = useState<CountryPage[]>([]);
 
   const getFlags = async () => {
     appPages.forEach(async page => {
@@ -89,13 +90,25 @@ const Menu: React.FC = () => {
     setCountriesList(response)
   }
 
+  const sortCountries = (a: any, b: any) => {
+    if (a.cases < b.cases) {
+      return 1;
+    }
+    
+    if (a.cases > b.cases) {
+      return -1;
+    }
+
+    return 0;
+  }
+
   useEffect(() => {
     getFlags();
     getAllCountries();
-  }, [])
+  }, []);
 
   useEffect(() => {
-    console.log(countriesList);
+    setSortedCountriesList(countriesList.sort(sortCountries));
   }, [countriesList])
 
   return (
@@ -118,7 +131,7 @@ const Menu: React.FC = () => {
         </IonList>
         <IonList id="allCountries-list">
           {
-            countriesList.map((countrie, index) => {
+            sortedCountriesList.map((countrie, index) => {
               return (
                 <IonMenuToggle key={index} autoHide={false}>
                   <IonItem className={location.pathname === `/page/${countrie.country}` ? 'selected' : ''} routerLink={`/page/${countrie.country}`} routerDirection="none" lines="none" detail={false}>

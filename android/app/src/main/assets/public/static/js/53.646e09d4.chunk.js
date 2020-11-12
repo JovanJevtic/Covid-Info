@@ -1,0 +1,2 @@
+(this["webpackJsonpionic-navigation"]=this["webpackJsonpionic-navigation"]||[]).push([[53],{164:function(n,t,i){"use strict";i.r(t),i.d(t,"startStatusTap",(function(){return e}));var o=i(7),e=function(){var n=window;n.addEventListener("statusTap",(function(){Object(o.j)((function(){var t=n.innerWidth,i=n.innerHeight,e=document.elementFromPoint(t/2,i/2);if(e){var c=e.closest("ion-content");c&&c.componentOnReady().then((function(){Object(o.g)((function(){return c.scrollToTop(300)}))}))}}))}))}}}]);
+//# sourceMappingURL=53.646e09d4.chunk.js.map

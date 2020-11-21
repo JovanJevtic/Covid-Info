@@ -14,6 +14,8 @@ import {
   IonSearchbar,
 } from '@ionic/react';
 
+import { RefresherEventDetail } from '@ionic/core';
+
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Menu.css';
@@ -77,6 +79,7 @@ const Menu: React.FC = () => {
 
   const [ countriesList, setCountriesList ] = useState<CountryPage[]>([]);
   const [ sortedCountriesList, setSortedCountriesList ] = useState<CountryPage[]>([]);
+  const [ searchedCountriesList, setSearchedCountriesList ] = useState<CountryPage[]>([]);
   const [ searchText, setSearchText ] = useState<string>('');
 
   const getFlags = async () => {
@@ -108,7 +111,6 @@ const Menu: React.FC = () => {
 
   const handleSearchInput = (e: any) => {
     const query = e.currentTarget.value.toLowerCase();
-    console.log(query);
     requestAnimationFrame(() => {
       sortedCountriesList.forEach(item => {
         const shouldShow = item.country.toLowerCase().indexOf(query) > -1;

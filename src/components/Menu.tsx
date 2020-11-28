@@ -7,21 +7,15 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
   IonImg,
-  IonTitle,
-  IonText,
   IonSearchbar,
 } from '@ionic/react';
-
-import { RefresherEventDetail } from '@ionic/core';
 
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Menu.css';
 import { globe, globeOutline } from 'ionicons/icons';
 import { getCountryFlag, getCountriesList } from '../api/index';
-import { count } from 'console';
  
 interface AppPage {
   url: string;
@@ -139,7 +133,7 @@ const Menu: React.FC = () => {
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
                   {appPage.title != 'Globalno' && <IonImg style={{maxWidth: 30, maxHeight: 30}} slot="start" src={appPage.imgSrc} />} 
                   {/* appPage.title != 'Globalno' && <IonText style={{width: 50, color: 'white'}} slot="start"> {appPage.iso} </IonText> */}
-                  { appPage.title === 'Globalno' && <IonIcon icon={globe} style={{maxWidth: 28, maxHeight: 30, fontSize: 30, color: 'white'}} slot="start" /> }
+                  { appPage.title === 'Globalno' && <IonIcon icon={globeOutline} style={{maxWidth: 28, maxHeight: 30, fontSize: 30, color: 'white'}} slot="start" /> }
                   <IonLabel style={{fontWeight: 'bold'}}>{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>

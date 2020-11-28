@@ -5,8 +5,6 @@ import { useParams } from 'react-router';
 import GlobalData from '../components/GlobalData';
 import CountryData from '../components/CountryData';
 
-import { getWorldData } from '../api/index';
-
 const Page: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();

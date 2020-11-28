@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getCountryData } from '../api/index';
-import {
-    IonLabel,
-    IonItem
-} from '@ionic/react';
 
 import InfoCard from './InfoCard';
 
